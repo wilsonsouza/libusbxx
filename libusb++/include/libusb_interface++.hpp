@@ -13,13 +13,15 @@
 #include <libusb++.hpp>
 #include <libusb_decode_cpu.hpp>
 #include <mutex>
-//
+//-----------------------------------------------------------------------------------------------//
 namespace std
 {
    namespace usb
    {
       namespace interface
       {
+         //must be removed
+         using interface_pointer = void *;
          #if defined(_MSC_VER)
          #if defined(_WIN64)
          #define ALIGNED(8) __declspec(align(8))

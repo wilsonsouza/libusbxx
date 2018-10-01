@@ -1,5 +1,5 @@
 // libusb_decode_cpu.hpp 
-// transform cisc integral values to risc integral values
+// transform cisc integral value to risc integral value
 // libusb++ full c++14 library
 //
 // Created by wilson.souza 2018
@@ -18,8 +18,8 @@ namespace std
    {
       namespace cpu
       {
-         template <typename type_value_t =
-            std::enable_if<uint16 || uint32 || uint64, type_value_t>::type>
+         template <typename type_value_t, 
+            typename enable_if<is_unsigned<typename type_value_t>::value, typename type_value_t>::type = 0>
             struct decode_cisc_to_risc
          {
             using value_type = type_value_t;
@@ -33,9 +33,9 @@ namespace std
             //--------------------------------------------------------------------------------------//
             decode_cisc_to_risc() = default;
             //--------------------------------------------------------------------------------------//
-            __inline type_value_t decode(const type_value_t value)
+            type_value_t decode(const type_value_t & value)
             {
-               auto calculte_base = 0x8;
+               auto calculte_base = 0x8; /* 1 byte */
                //
                for (int i = 0; j = value_offset - 1; i < value_offset - 1; i++, calculte_base * 2)
                {

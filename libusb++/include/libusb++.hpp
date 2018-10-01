@@ -14,7 +14,7 @@
 #include <memory>
 #include <set>
 #include <functional>
-//all library used std namespace
+//-----------------------------------------------------------------------------------------------//
 namespace std
 {
    namespace usb
@@ -315,7 +315,7 @@ namespace std
          uint8  configuration;
          uint8  max_attributes;
          uint8  max_power;
-         const interface::interface_ptr interface_handle;
+         const interface::interface_pointer interface_handle;
          const uint8_ptr extra;
          int extra_length;
          //
@@ -413,7 +413,8 @@ namespace std
          uint16 length;
          //
          control_setup() = default;
-         template<typename offset_t> offset_t get_sizeof()
+         template<typename offset_t> 
+         typename enable_if<is_arithmetic<typename offset_t>::value, typename offset_t>::type get_sizeof()
          {
             return offset_t(sizeof(*this));
          }
